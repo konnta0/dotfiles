@@ -16,6 +16,7 @@ ln -s /path/to/dotfiles/.zsh
 ### require
 https://github.com/sorin-ionescu/prezto
 
+↑Check and run **Installation** 
 
 ```
 cp -f .zprezto/modules/prompt/functions/prompt_sorin_setup ~/.zprezto/modules/prompt/functions/prompt_sorin_setup
