@@ -169,9 +169,10 @@ function prompt_sorin_setup {
   _prompt_sorin_pwd=''
 
   # Define prompts.
-  PROMPT='$python_info[virtualenv]${editor_info[overwrite]}%(?:: %F{1}'
+  PROMPT='${VIM:+" %B%F{6}V%f%b"} %F{8}%*%f '
+  PROMPT+='$python_info[virtualenv]${editor_info[overwrite]}%(?:: %F{1}'
   PROMPT+=${show_return}
-  PROMPT+='%f)${VIM:+" %B%F{6}V%f%b"} %F{8}%*%f '
+  PROMPT+='%f)'
   PROMPT+='${SSH_TTY:+"%F{9}%n%f%F{0}@%f%F{3}%m%f "}%F{4}${_prompt_sorin_pwd}${_prompt_sorin_git}%(!. %B%F{1}#%f%b.)${editor_info[keymap]} '
   SPROMPT='zsh: correct %F{1}%R%f to %F{2}%r%f [nyae]? '
 }
