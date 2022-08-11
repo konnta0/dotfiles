@@ -1,9 +1,6 @@
 # Note
 Operation is not guaranteed!
 
-## iterm2
-https://github.com/chibicode/one-light-terminal/
-
 ## zshrc
 ```
 cd ~/
@@ -41,12 +38,12 @@ cp -f lazygit/config.yml ~/Library/Application\ Support/jesseduffield/lazygit/co
 https://github.com/jesseduffield/lazygit/blob/9df133ed8c3b1fc813dbee09a34455ef6be51680/docs/Config.md
 
 
-## vscode
-Atom One Light
+## VisualStudio Code
+GruvBox Theme
 
-https://marketplace.visualstudio.com/items?itemName=akamud.vscode-theme-onelight
+https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox
 
 ## Rider
-Atom One Light
+GruvBox Theme
 
-https://plugins.jetbrains.com/plugin/14799-atom-one-theme
+https://plugins.jetbrains.com/plugin/12310-gruvbox-theme
