@@ -19,6 +19,20 @@ https://github.com/sorin-ionescu/prezto
 cp -f .zprezto/modules/prompt/functions/prompt_sorin_setup ~/.zprezto/modules/prompt/functions/prompt_sorin_setup
 ```
 
+Change .zpreztorc
+```diff
+@@ -38,7 +38,11 @@ zstyle ':prezto:load' pmodule \
+   'spectrum' \
+   'utility' \
+   'completion' \
+-  'prompt'
++  'prompt' \
++  'git' \
++  'syntax-highlighting' \
++  'history-substring-search' \
++  'autosuggestions' 
+```
+
 
 ## tmux
 ```
