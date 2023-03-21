@@ -61,3 +61,9 @@ https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox
 GruvBox Theme
 
 https://plugins.jetbrains.com/plugin/12310-gruvbox-theme
+
+
+## For Windows
+WIP
+
+1. Install WSL
