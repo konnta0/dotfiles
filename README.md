@@ -63,6 +63,16 @@ GruvBox Theme
 https://plugins.jetbrains.com/plugin/12310-gruvbox-theme
 
 
+## zinit + starship
+```shell
+bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
+source ~/.zshrc
+zinit self-update
+
+cd  ~/.config
+ln -s ~/ghq/github.com/konnta0/dotfiles/.config/starship.toml .
+```
+
 ## For Windows
 WIP
 

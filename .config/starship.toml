@@ -1,0 +1,22 @@
+add_newline = true
+
+format = '$all$directory$character'
+
+[time]
+disabled = false
+format = '🕙[\[ $time \]]($style) '
+time_format = '%T'
+utc_time_offset = '+9'
+
+[git_status]
+conflicted = '[ = ](red)'
+ahead = ' ⇡${count} '
+behind = ' ⇣${count} '
+diverged = ' ⇕⇡${ahead_count}⇣${behind_count} '
+up_to_date = '[ ✓ ](green)'
+untracked = '[ ◼ ](blue)'
+stashed = '[ ✭ ](yellow)'
+modified = '[ ✱ ](orange)'
+staged = '[ ++\($count\) ](green)'
+renamed = '[ ➜ ](blue)'
+deleted = '[ ✖ ](red)'
