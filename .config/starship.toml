@@ -1,10 +1,10 @@
 add_newline = true
 
-format = '$all$directory$character'
+format = '$all$directory[❯](red)[❯](blue)[❯](green)$character'
 
 [time]
 disabled = false
-format = '🕙[\[ $time \]]($style) '
+format = '🕙[\[ $time \]](white) '
 time_format = '%T'
 utc_time_offset = '+9'
 
