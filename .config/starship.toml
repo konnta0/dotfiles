@@ -8,7 +8,17 @@ format = '🕙[\[ $time \]](white) '
 time_format = '%T'
 utc_time_offset = '+9'
 
+[aws]
+style = 'blue'
+
+[git_branch]
+style = 'bold purple'
+
+[gcloud]
+style = 'blue'
+
 [git_status]
+style = 'purple'
 conflicted = '[ = ](red)'
 ahead = ' ⇡${count} '
 behind = ' ⇣${count} '
@@ -16,7 +26,10 @@ diverged = ' ⇕⇡${ahead_count}⇣${behind_count} '
 up_to_date = '[ ✓ ](green)'
 untracked = '[ ◼ ](blue)'
 stashed = '[ ✭ ](yellow)'
-modified = '[ ✱ ](orange)'
+modified = '[ ✱ ](green)'
 staged = '[ ++\($count\) ](green)'
 renamed = '[ ➜ ](blue)'
 deleted = '[ ✖ ](red)'
+
+[directory]
+style = 'green'
