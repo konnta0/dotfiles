@@ -1,0 +1,10 @@
+---
+description: Git — direct commits and pushes to main are allowed
+alwaysApply: true
+---
+
+# Git workflow for this repository
+
+- **Direct `main` is allowed:** You may commit and push straight to the `main` branch unless the user explicitly asks for a feature branch or PR workflow.
+- **Do not** create a `cursor/*` branch by default solely to avoid touching `main`; use `main` when the user has not requested otherwise.
+- If the user asks for a branch, PR-only workflow, or review before merge, follow that instead.

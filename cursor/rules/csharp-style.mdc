@@ -1,0 +1,29 @@
+---
+description: C# — explicit private, XML docs on public API, static lambdas when appropriate
+alwaysApply: true
+---
+
+# C# conventions (global)
+
+Apply to **all C#** work unless a file explicitly diverges for interop, source generators, or third-party patterns.
+
+## Visibility
+
+- Use an **explicit `private`** (or `private protected` / `file` / `internal` as appropriate) on every member that is not part of the public or internal API surface.
+- Do not rely on default accessibility for clarity; **private instance and static methods/fields** should say `private`.
+
+## Documentation (public API)
+
+- **Public** types, **public** members (including **public** properties and **public** methods), and **public** `record` primary constructors must have **XML documentation** (`<summary>`, and `<param>` / `<returns>` / `<inheritdoc />` where they add meaning).
+- For **CommunityToolkit `[ObservableProperty]`**, put a `<summary>` on the **backing field** that describes the generated public property (intent and semantics).
+- `internal` API: document when it is part of a reusable module; at minimum, non-trivial `internal` types should have a class-level `<summary>`.
+
+## Lambdas and captures
+
+- Prefer **`static` lambdas and local functions** when they do not need to capture `this` or locals; pass values as **parameters** or **arguments** instead of closing over state.
+- When behavior needs instance state, prefer a **named private method** over a large capturing lambda.
+- Do not add `static` to a lambda if it would force awkward workarounds; correctness and readability come first.
+
+## Performance / thread safety
+
+- Avoid unnecessary allocations and unbounded buffers in hot paths; document concurrency expectations on public surface when non-obvious.

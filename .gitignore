@@ -1,0 +1,9 @@
+# Cursor IDE internal state
+.cursor/
+
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfplan
+.terraform.lock.hcl

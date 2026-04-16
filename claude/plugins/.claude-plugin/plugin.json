@@ -1,0 +1,8 @@
+{
+  "name": "konnta0-skills",
+  "description": "Personal skills for C#/.NET, Unity, Terraform, AWS, GCP, and the plan-review-cycle workflow.",
+  "version": "1.0.0",
+  "author": {
+    "name": "konnta0"
+  }
+}

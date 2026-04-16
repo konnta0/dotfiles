@@ -1,0 +1,40 @@
+---
+description: Terraform — module structure, plan-before-apply, provider pinning, naming conventions
+alwaysApply: false
+globs: "**/*.tf,**/*.tfvars"
+---
+
+# Terraform conventions
+
+## File layout (per module)
+
+- `main.tf` — resources
+- `variables.tf` — all `variable` blocks with `type`, `description`, and `default` (if optional)
+- `outputs.tf` — all `output` blocks with `description`
+- `versions.tf` — `terraform` block with `required_version` and `required_providers`
+
+## Plan before apply
+
+- Always run `terraform plan -out=tfplan` and review output before applying.
+- Never apply without an explicit plan file in CI; use `-input=false`.
+
+## Provider and module versions
+
+- Pin providers to a minor version range: `~> X.Y`.
+- Pin modules to an exact tag or SHA, not a branch.
+
+## Naming
+
+- Resource names: `<type>_<purpose>` in snake_case (e.g., `aws_s3_bucket.app_artifacts`).
+- Variables and outputs: snake_case, descriptive.
+- Avoid generic names like `main`, `default`, `test`.
+
+## State
+
+- Use a remote backend (S3 + DynamoDB for AWS, GCS for GCP) with encryption enabled.
+- Never commit `terraform.tfstate` or `*.tfvars` containing secrets.
+
+## Security
+
+- Do not hardcode credentials; use provider-level auth (IAM roles, Workload Identity, environment variables).
+- Enable `prevent_destroy = true` on stateful resources (databases, S3 buckets with data).
