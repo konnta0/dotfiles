@@ -15,14 +15,43 @@ bash install.sh
 | Source | Destination |
 |---|---|
 | `.zshrc` | `~/.zshrc` |
-| `.tmux.conf` | `~/.tmux.conf` |
 | `.config/starship.toml` | `~/.config/starship.toml` |
+| `.config/herdr/config.toml` | `~/.config/herdr/config.toml` |
 | `lazygit/config.yml` | `~/Library/Application Support/jesseduffield/lazygit/config.yml` |
 | `cursor/rules/*.mdc` | `~/.cursor/rules/*.mdc` |
 | `cursor/skills/` | `~/.cursor/skills` |
 | `claude/CLAUDE.md` | `~/.claude/CLAUDE.md` |
 
 Re-running `install.sh` is safe (idempotent).
+
+## Terminal workspace
+
+[Herdr](https://herdr.dev/) is used instead of tmux. Install Herdr and fzf before
+running the dotfiles installer:
+
+```bash
+# macOS (Homebrew)
+brew install herdr fzf
+
+# Linux / macOS (official Herdr installer)
+curl -fsSL https://herdr.dev/install.sh | sh
+```
+
+On Windows, use Herdr's native installer and fzf release package, or use the
+Linux instructions from WSL. The shell configuration in this repository is for
+zsh, so native PowerShell setup is intentionally not managed here.
+
+Run `herdr` (or the `hr` alias) in a project directory. The tracked config keeps
+`Ctrl-b` as the prefix, `Ctrl-b v` / `Ctrl-b -` for pane splits, mouse support,
+the Solarized theme, and the existing purple accent. `fzf` runs directly rather
+than through the tmux-only `fzf-tmux` wrapper.
+
+For agent-aware status and session restore, install the integrations you use:
+
+```bash
+herdr integration install codex
+herdr integration install claude
+```
 
 ---
 

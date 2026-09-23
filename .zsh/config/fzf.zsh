@@ -3,7 +3,7 @@ fbr() {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+           fzf --height "${FZF_HEIGHT:-40%}" --reverse +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
@@ -59,7 +59,7 @@ fgst() {
 
   local cmd="${FZF_CTRL_T_COMMAND:-"command git status -s"}"
 
-  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | while read -r item; do
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" fzf -m --ansi --preview="echo {} | awk '{print \$2}' | xargs git diff --color" | while read -r item; do
     echo "$item" | awk '{print $2}' 
   done
   echo

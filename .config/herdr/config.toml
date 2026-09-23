@@ -1,0 +1,23 @@
+# Keep Herdr's tmux-like prefix while making the few preferences that matter to
+# this dotfiles repository explicit. Unspecified options follow Herdr defaults.
+
+[theme]
+name = "solarized"
+
+[terminal]
+shell_mode = "auto"
+new_cwd = "follow"
+
+[keys]
+prefix = "ctrl+b"
+split_vertical = "prefix+v"
+split_horizontal = "prefix+minus"
+
+[ui]
+accent = "#8762c6"
+mouse_capture = true
+copy_on_select = true
+pane_borders = true
+
+[advanced]
+scrollback_limit_bytes = 10000000

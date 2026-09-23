@@ -4,7 +4,7 @@ fi
 
 alias f='fzf'
 alias ll='ls -alG'
-alias tm='tmux -u'
+alias hr='herdr'
 alias cd-dev='cd ${HOME}/dev'
 alias op='open'
 alias lg='lazygit'

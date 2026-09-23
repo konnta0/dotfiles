@@ -18,6 +18,14 @@ link() {
   fi
 }
 
+unlink_legacy() {
+  local dst="$1" old_src="$2"
+  if [ -L "$dst" ] && [ "$(readlink "$dst")" = "$old_src" ]; then
+    unlink "$dst"
+    ok "$dst (removed legacy link)"
+  fi
+}
+
 echo ""
 echo "=== dotfiles install ($(basename "$DOTFILES")) ==="
 echo ""
@@ -25,8 +33,9 @@ echo ""
 # ── Home dotfiles ─────────────────────────────────────────────
 echo "[home]"
 link "$DOTFILES/.zshrc"               "$HOME/.zshrc"
-link "$DOTFILES/.tmux.conf"           "$HOME/.tmux.conf"
 link "$DOTFILES/.config/starship.toml" "$HOME/.config/starship.toml"
+link "$DOTFILES/.config/herdr/config.toml" "$HOME/.config/herdr/config.toml"
+unlink_legacy "$HOME/.tmux.conf" "$DOTFILES/.tmux.conf"
 
 # lazygit (macOS path)
 LAZYGIT_CFG="$HOME/Library/Application Support/jesseduffield/lazygit"
