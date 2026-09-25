@@ -1,8 +1,8 @@
 general:
   # Commands to run when the WM has started. This is useful for running a
   # script or launching another application.
-  # Start the Zebar status bar alongside GlazeWM.
-  startup_commands: ['shell-exec zebar']
+  startup_commands:
+    - 'shell-exec --hide-window pwsh -NoProfile -Command & $HOME/.glzr/glazewm/grid.ps1 -Daemon'
 
   # Commands to run just before the WM is shutdown.
   shutdown_commands: []
@@ -38,7 +38,7 @@ gaps:
 
   # Gap between windows and the screen edge.
   outer_gap:
-    top: '60px'
+    top: '20px'
     right: '20px'
     bottom: '20px'
     left: '20px'
@@ -123,12 +123,8 @@ workspaces:
 window_rules:
   - commands: ['ignore']
     match:
-      # Ignores any Zebar windows.
-      - window_process: { equals: 'zebar' }
-
       # Ignores picture-in-picture windows for browsers.
-      - window_title: { regex: '[Pp]icture.in.[Pp]icture' }
-        window_class: { regex: 'Chrome_WidgetWin_1|MozillaDialogClass' }
+      - window_title: { regex: '[Pp]icture.in.[Pp]icture|ピクチャ.イン.ピクチャ' }
 
       # Keep macOS utility panels out of the tiling tree.
       - window_process: { equals: 'System Settings' }
@@ -210,11 +206,17 @@ keybindings:
   - commands: ['toggle-floating --centered']
     bindings: ['alt+shift+space']
 
-  # Show the focused app at a large, non-fullscreen size, then return it to tiling.
+  # Show the focused app at a large, non-fullscreen size.
   - commands: ['set-floating --centered --width 80% --height 80%']
     bindings: ['alt+g']
-  - commands: ['set-tiling']
+
+  # Enable automatic square-grid management for the focused workspace.
+  - commands: ['shell-exec --hide-window pwsh -NoProfile -Command & $HOME/.glzr/glazewm/grid.ps1 -EnableWorkspace']
     bindings: ['alt+shift+g']
+
+  # Disable the grid and return its windows to the GlazeWM tiling tree.
+  - commands: ['shell-exec --hide-window pwsh -NoProfile -Command & $HOME/.glzr/glazewm/grid.ps1 -DisableWorkspace']
+    bindings: ['alt+ctrl+g']
 
   # Change the focused window to be tiling.
   - commands: ['toggle-tiling']

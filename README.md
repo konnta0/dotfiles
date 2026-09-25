@@ -5,8 +5,8 @@ Personal configuration files. Portability is not guaranteed across all environme
 ## Quick install
 
 ```bash
-git clone https://github.com/konnta0/dotfiles ~/ghq/github.com/konnta0/dotfiles
-cd ~/ghq/github.com/konnta0/dotfiles
+git clone https://github.com/konnta0/dotfiles ~/dotfiles
+cd ~/dotfiles
 bash install.sh
 ```
 
@@ -18,6 +18,8 @@ bash install.sh
 | `.config/starship.toml` | `~/.config/starship.toml` |
 | `.config/herdr/config.toml` | `~/.config/herdr/config.toml` |
 | `glazewm/config.yaml` | `~/.glzr/glazewm/config.yaml` |
+| `glazewm/grid.ps1` | `~/.glzr/glazewm/grid.ps1` |
+| `glazewm/grid-config.json` | `~/.glzr/glazewm/grid-config.json` |
 | `lazygit/config.yml` | `~/Library/Application Support/jesseduffield/lazygit/config.yml` |
 | `cursor/rules/*.mdc` | `~/.cursor/rules/*.mdc` |
 | `cursor/skills/` | `~/.cursor/skills` |
@@ -96,7 +98,7 @@ Copy the template to each project:
 
 ```bash
 mkdir -p .github
-cp ~/ghq/github.com/konnta0/dotfiles/copilot/copilot-instructions.md .github/copilot-instructions.md
+cp ~/dotfiles/copilot/copilot-instructions.md .github/copilot-instructions.md
 ```
 
 ---
@@ -153,10 +155,10 @@ zinit self-update
 
 ## GlazeWM (macOS)
 
-Install GlazeWM and Zebar, then link the tracked configuration:
+Install GlazeWM and PowerShell 7, then link the tracked configuration:
 
 ```shell
-brew install --cask glzr-io/tap/glazewm glzr-io/tap/zebar
+brew install --cask glzr-io/tap/glazewm powershell
 bash install.sh
 ```
 
@@ -171,13 +173,36 @@ Custom GlazeWM shortcuts in this repository:
 | `Option+B` | Set horizontal tiling direction |
 | `Option+Shift+B` | Set vertical tiling direction |
 | `Option+G` | Center the focused app at 80% width and height |
-| `Option+Shift+G` | Return the focused app to the tiling layout |
+| `Option+Shift+G` | Enable the automatic square grid for this workspace |
+| `Option+Control+G` | Disable the grid and restore GlazeWM tiling |
 | `Option+Enter` | Open macOS Terminal |
 
-The direction shortcuts make nested layouts such as a 2x2 grid easier to
-construct; GlazeWM does not currently provide an automatic grid preset.
+The PowerShell 7 grid controller runs automatically with GlazeWM on both
+Windows and macOS. Every workspace is grid-enabled by default. It reacts when
+windows are opened, closed, or moved, when a workspace changes, and when
+monitors are added, removed, or resized. Each visible workspace on each monitor
+is laid out independently. Up to eight windows use a 4x2 landscape grid or a
+2x4 portrait grid; larger sets choose the square-cell arrangement that makes
+best use of the workspace. Unused space is centered around the grid.
 
-Zebar starts with GlazeWM, and the 60px top gap reserves space for its bar. On
-the first run, open Zebar's GUI, install a widget pack from **Marketplace**, and
-enable **Run on startup** for the desired widget. Zebar manages its own
-`~/.glzr/zebar/settings.json`, so that generated state is not symlinked here.
+After requesting the target size, the controller reads back the size each app
+actually accepted. It then uses variable column widths and row heights to avoid
+overlap even when applications have different minimum sizes. If no arrangement
+can fit, it chooses the one with the least overflow and records that fact in the
+log.
+
+Windows already made floating by a matching GlazeWM `window_rules` entry are
+left alone. For an explicit cross-platform exclusion, add a rule to
+`glazewm/grid-config.json` using `processNameRegex`, `titleRegex`, and/or
+`classNameRegex`. Matching windows are made floating but are never resized or
+repositioned by the grid controller. System Settings is excluded by default.
+Grid-managed windows are converted to floating only so the controller can
+position them precisely.
+
+Ensure `pwsh` is available on `PATH`; the config intentionally uses no
+OS-specific PowerShell path. On Windows, install GlazeWM and PowerShell 7, then
+place `grid.ps1` beside `%USERPROFILE%/.glzr/glazewm/config.yaml`. Runtime state
+and logs are written to `~/.glzr/glazewm/grid-state.json` and
+`~/.glzr/glazewm/grid-controller.log` and are not tracked by this repository.
+
+The outer gap is 20px on every edge; no separate status-bar process is needed.

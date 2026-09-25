@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "excludedWindows": [
+    {
+      "processNameRegex": "^(System Settings|システム設定)$"
+    }
+  ]
+}

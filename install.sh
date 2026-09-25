@@ -36,6 +36,8 @@ link "$DOTFILES/.zshrc"               "$HOME/.zshrc"
 link "$DOTFILES/.config/starship.toml" "$HOME/.config/starship.toml"
 link "$DOTFILES/.config/herdr/config.toml" "$HOME/.config/herdr/config.toml"
 link "$DOTFILES/glazewm/config.yaml" "$HOME/.glzr/glazewm/config.yaml"
+link "$DOTFILES/glazewm/grid.ps1" "$HOME/.glzr/glazewm/grid.ps1"
+link "$DOTFILES/glazewm/grid-config.json" "$HOME/.glzr/glazewm/grid-config.json"
 unlink_legacy "$HOME/.tmux.conf" "$DOTFILES/.tmux.conf"
 
 # lazygit (macOS path)
