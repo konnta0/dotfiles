@@ -1,5 +1,6 @@
 # Cursor IDE internal state
 .cursor/
+cursor/skills/
 
 # Terraform
 **/.terraform/

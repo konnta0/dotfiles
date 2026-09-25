@@ -35,6 +35,7 @@ echo "[home]"
 link "$DOTFILES/.zshrc"               "$HOME/.zshrc"
 link "$DOTFILES/.config/starship.toml" "$HOME/.config/starship.toml"
 link "$DOTFILES/.config/herdr/config.toml" "$HOME/.config/herdr/config.toml"
+link "$DOTFILES/glazewm/config.yaml" "$HOME/.glzr/glazewm/config.yaml"
 unlink_legacy "$HOME/.tmux.conf" "$DOTFILES/.tmux.conf"
 
 # lazygit (macOS path)

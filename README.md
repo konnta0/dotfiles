@@ -17,6 +17,7 @@ bash install.sh
 | `.zshrc` | `~/.zshrc` |
 | `.config/starship.toml` | `~/.config/starship.toml` |
 | `.config/herdr/config.toml` | `~/.config/herdr/config.toml` |
+| `glazewm/config.yaml` | `~/.glzr/glazewm/config.yaml` |
 | `lazygit/config.yml` | `~/Library/Application Support/jesseduffield/lazygit/config.yml` |
 | `cursor/rules/*.mdc` | `~/.cursor/rules/*.mdc` |
 | `cursor/skills/` | `~/.cursor/skills` |
@@ -150,6 +151,33 @@ zinit self-update
 
 [GruvBox Theme](https://plugins.jetbrains.com/plugin/12310-gruvbox-theme)
 
-## For Windows
+## GlazeWM (macOS)
 
-WIP — Install WSL first.
+Install GlazeWM and Zebar, then link the tracked configuration:
+
+```shell
+brew install --cask glzr-io/tap/glazewm glzr-io/tap/zebar
+bash install.sh
+```
+
+Grant GlazeWM access in **System Settings → Privacy & Security →
+Accessibility**, then restart it. Subsequent config changes can be applied with
+`Option+Shift+R` (`Alt+Shift+R` in the YAML notation).
+
+Custom GlazeWM shortcuts in this repository:
+
+| Shortcut | Action |
+|---|---|
+| `Option+B` | Set horizontal tiling direction |
+| `Option+Shift+B` | Set vertical tiling direction |
+| `Option+G` | Center the focused app at 80% width and height |
+| `Option+Shift+G` | Return the focused app to the tiling layout |
+| `Option+Enter` | Open macOS Terminal |
+
+The direction shortcuts make nested layouts such as a 2x2 grid easier to
+construct; GlazeWM does not currently provide an automatic grid preset.
+
+Zebar starts with GlazeWM, and the 60px top gap reserves space for its bar. On
+the first run, open Zebar's GUI, install a widget pack from **Marketplace**, and
+enable **Run on startup** for the desired widget. Zebar manages its own
+`~/.glzr/zebar/settings.json`, so that generated state is not symlinked here.
